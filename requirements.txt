@@ -1,0 +1,5 @@
+scrapy==2.9.0
+scrapy-redis
+aiohttp
+environs
+twisted==22.10.0

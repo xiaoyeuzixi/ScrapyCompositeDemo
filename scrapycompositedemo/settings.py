@@ -1,3 +1,10 @@
+import os  #表示系统操作库，用于获取系统环境变量
+accountpool_url = os.getenv('ACCOUNTPOOL_URL')   #获取系统环境变量ACCOUNTPOOL_URL的值
+proxypool_url = os.getenv('PROXYPOOL_URL')   #获取系统环境 变量PROXYPOOL_URL的值
+
+
+ACCOUNTPOOL_URL = 'http://localhost:6778/antispider7/random'
+PROXYPOOL_URL = 'http://localhost:5555/random'
 # Scrapy settings for scrapycompositedemo project
 #
 # For simplicity, this file contains only settings considered important or
@@ -61,6 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 
 TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
 
+
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -93,3 +101,15 @@ TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"  # 使用scrapy_redis调度器
+DUPEFILTER_CLASS = "scrapy_redis_bloomfilter.dupefilter.RFPDupeFilter"
+BLOOMFILTER_HASH_NUMBER = 6  # 默认为6，散列函数的个数
+BLOOMFILTER_BIT = 30  # 位数组大小,对应的爬取量级在1亿，如果爬取量级在10亿以上，可以适当调整位数组大小
+
+REDIS_URL = 'redis://192.168.110.112:6380'
+HTTP_PROXY = 'http://host.docker.internal:6778/antispider7/random'
+
+
